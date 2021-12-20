@@ -2,8 +2,13 @@
 
     session_start();
     include "../../controller/connect.php";
+    $query = mysqli_query($connect, "SELECT * FROM countdown");
+    $data = mysqli_fetch_array($query);
+    $data['tanggal'];
     if ($_SESSION['login'] != 'true') {
-        header('location:views/login.php');
+        header('location:../auth/login.php');
+    } elseif ($data['tanggal'] == date('Y-m-d')) {
+        header('location:tutup.php');
     }
 
 ?>
@@ -14,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pendaftaran Pengunjung</title>
+    <title>REGISTRASI</title>
     <link rel="icon" type="image/png" href="../../assets/img/12.jpg">
     <link rel="stylesheet" href="../../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../../assets/css/all.css">
@@ -91,17 +96,18 @@
                         <a class="nav-link" href="?beranda">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?monitoring">monitoring</a>
+                        <a class="nav-link" href="?pendaftaran">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?pengaturan">pengaturan</a>
+                        <a class="nav-link" href="?daftarsiswa">Riwayat Pemesanan</a>
                     </li>
                 </ul>
             </div>
             <hr class="mx-2 m-0" style="height:20px; border: 1px solid rgba(0, 0, 0, 0.2)">
             <div class="dropdown">
-                <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown"><?= $_SESSION['nama'] ?></a>
+                <a class="btn btn-white dropdown-toggle" href="" role="button" data-toggle="dropdown"><?= $_SESSION['nama'] ?></a>
                 <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="?profil"><i class="fa fa-user mr-2"></i>Profil</a>
                     <a class="dropdown-item" href="../../controller/auth.php"><i class="fa fa-sign-out-alt mr-2"></i>Keluar</a>
                 </div>
             </div>
@@ -115,12 +121,32 @@
 
         if(isset($_GET['beranda'])) {
             include "beranda.php";
-        } elseif(isset($_GET['monitoring'])) {
-            include "monitoring.php";
-        } elseif(isset($_GET['pengaturan'])) {
-            include "pengaturan.php";
-        }
-        else {
+        } elseif(isset($_GET['pendaftaran'])) {
+            $id = $_SESSION['id'];
+            $nama = $_SESSION['nama'];
+            $cekblacklist = mysqli_query($connect, "SELECT * FROM blacklist WHERE id_user='$id' AND nama='$nama'");
+            $data = mysqli_fetch_array($cekblacklist);
+            if ($data > 0) {
+                include "blacklist.php";
+            } else {
+                include "pendaftaran.php";
+            }
+        } elseif(isset($_GET['daftarsiswa'])) {
+            $id = $_SESSION['id'];
+            $cekstatus = mysqli_query($connect, "SELECT * FROM pendaftar WHERE id='$id'");
+            $data = mysqli_fetch_array($cekstatus);
+            if ($data < 1) {
+                include "belumdaftar.php";
+            } elseif ($data['status'] == '0') {
+                include "menunggu.php";
+            } elseif ($data['status'] == '1') {
+                include "daftarsiswa.php";
+            } else {
+                include "blacklist.php";
+            }
+        } elseif(isset($_GET['profil'])) {
+            include "profile.php";
+        } else {
             include "beranda.php";
         }
 
@@ -141,7 +167,7 @@
                     </div>
                     <div>
                         <a href="#" class="text-light mx-1"><i
-                                class="fab fa-instagram fa-2x"></i></a>
+                                class="#"></i></a>
                         <a href="#" class="text-light mx-1"><i class="fab fa-facebook fa-2x"></i></a>
                     </div>
                 </div>
@@ -153,8 +179,8 @@
                     <h4>NAVIGATE</h4>
                     <ul class="list-unstyled">
                         <li><a href="?beranda" class="text-light">Beranda</a></li>
-                        <li><a href="?monitoring" class="text-light">monitoring</a></li>
-                        <li><a href="?pengaturan" class="text-light">pengaturan</a></li>
+                        <li><a href="?pendaftaran" class="text-light">Pendaftaran</a></li>
+                        <li><a href="?daftarsiswa" class="text-light">Riwayat Pemesanan</a></li>
                     </ul>
                 </div>
             </div>

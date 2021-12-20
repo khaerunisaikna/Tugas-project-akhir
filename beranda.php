@@ -1,8 +1,9 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
+<div class="jumbotron">
             <div class="container text-center">
                 <h1 class="display-3">MUSIC.CO FESTIVAL 2022</h1>
                 <h4>THE BIGEST PENSI IN INDONESIA</h4>
+                <p><a class="btn btn-primary btn-lg mt-3 rounded-pill" href="?pendaftaran" role="button">REGISTRASI</a></p>
             </div>
         </div>
 
@@ -17,12 +18,15 @@
         <div class="container p-3">
             <!-- Example row of columns -->
             <div class="text-center">
-                <h3>MUSIC IS LIVE,ALIVE IS A MUSIC</h3>
+                <h4>MUSIC IS LIVE,ALIVE IS A MUSIC</h4>
             </div>
             <div class="text-center mt-5">
-            <h5>70% DARI HASIL PENJUALAN TIKET AKAN DISUMBANGKAN KE SAUDARA KITA DI SEMERU,LOMBOK,DAN MAKASSAR</h5>
+                <h2>HTM : 200k</h2>
+                <img src="../../assets/img/bca.png" alt="" width="200"><h5>923402348023840</h5>
             </div>
-
+            <div class="text-center mt-5">
+                <h5>70% DARI HASIL PENJUALAN TIKET AKAN DISUMBANGKAN KE SAUDARA KITA DI SEMERU,LOMBOK,DAN MAKASSAR</h5>
+            </div>
         </div> <!-- /container -->
 
         <hr>
@@ -55,12 +59,13 @@
         <div class="container p-3">
             <div class="row">
                 <div class="col-8">
-                    <h4>Sponsor</h4>
-                    <img src="../../assets/img/sosro.jpg" alt="" width="200">
-                    <img src="../../assets/img/pocari.jpg" alt="" width="200">
-                    <img src="../../assets/img/coco.jpg" alt="" width="200">
-                    <img src="../../assets/img/unilever.png" alt="" width="200">
-                    <img src="../../assets/img/bca.png" alt="" width="200">
+                    <img src="../../assets/img/db.jpg" alt="" width="200">
+                    <img src="../../assets/img/download.jpg" alt="" width="200">
+                    <img src="../../assets/img/download (1).jpg" alt="" width="200">
+                    <img src="../../assets/img/i.jpg" alt="" width="200">
+                    <img src="../../assets/img/r.jpg" alt="" width="200">
+                    <img src="../../assets/img/ro.jpg" alt="" width="200">
+                    <img src="../../assets/img/wg.jpg" alt="" width="200">
                 </div>
                 <div class="col-4">
                     <div class="card shadow m-2">
